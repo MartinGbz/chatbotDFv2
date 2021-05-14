@@ -24,7 +24,10 @@
     "@types/gapi.client": "^1.0.4",
     "bootstrap": "^5.0.0",
     "rxjs": "~6.6.0",
-    "tslib": "^2.0.0",
+    "speak-tts": "^2.0.8",
+    "tslib": "^2.2.0",
+    "utf8-encoding": "^0.1.2",
+    "witai-speech": "^0.2.0",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
