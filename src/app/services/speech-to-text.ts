@@ -6,7 +6,7 @@ declare var webkitSpeechRecognition: any;
 @Injectable({
   providedIn: 'root'
 })
-export class SpeechRecognitionService {
+export class SpeechToText {
 
   recognition =  new webkitSpeechRecognition();
   public text = '';

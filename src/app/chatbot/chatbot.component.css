@@ -1,5 +1,9 @@
-#btnSpeech{
+#btnSend{
   margin-left: 10px;
+}
+
+#btnRec{
+  margin-top: 10px;
 }
 
 #usermsg-1{

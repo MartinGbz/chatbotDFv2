@@ -2,21 +2,24 @@
 
 <div class="row">
   <div class="col">
-    <input type="text" class="form-control" id="msg" [(ngModel)]="msg" value="{{serviceSpeech.text}}"/>
+    <input type="text" class="form-control" id="msg" #text [(ngModel)]="msg" value="{{speechToTextService.text}}"/>
   </div>
   <div class="col">
-    <button class="btn btn-success" (click)="send()"> send </button>
-    <button class="btn btn-primary" id="btnSpeech" (click)="sendSpeech()"> sendSpeech </button>
+    <button class="btn btn-success" (click)="send(text.value)"> send </button>
+    <button class="btn btn-primary" id="btnSend" (click)="sendSpeech()"> sendSpeech </button>
+  </div>
+  <div class="col">
+
   </div>
 </div>
 <div class="row">
   <div class="col">
-    <button class="btn btn-success" (click)="startService()"> talk </button>
+    <button class="btn btn-danger" id="btnRec" (click)="startService()"> talk </button>
     <!--<button class="btn btn-danger" (click)="stopService()"> stop talk </button>-->
   </div>
 </div>
 <div class="row">
-  <p id="usermsg-1">{{serviceSpeech.text}}</p>
+  <!--<p id="usermsg-1">{{speechToTextService.text}}</p>-->
 </div>
 <div class="row">
   <p id="agentmsg-2"></p>

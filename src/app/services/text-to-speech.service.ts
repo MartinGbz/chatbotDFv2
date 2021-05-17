@@ -9,7 +9,7 @@ export class TextToSpeechService {
   constructor() {}
 
   speakInit(speech: Speech, speechData: any): void{
-    if (speech .hasBrowserSupport()) { // returns a boolean
+    if (speech.hasBrowserSupport()) { // returns a boolean
       console.log('speech synthesis supported');
       speech.init({
         volume: 1,

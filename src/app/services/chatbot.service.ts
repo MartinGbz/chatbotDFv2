@@ -35,9 +35,9 @@ export class ChatbotService {
   speech: any;
   speechData: any;
 
-  constructor(private http: HttpClient, private serviceTtoS: TextToSpeechService) {
+  constructor(private http: HttpClient, private textToSpeechService: TextToSpeechService) {
     this.speech = new Speech(); // will throw an exception if not browser supported
-    serviceTtoS.speakInit(this.speech, this.speechData);
+    textToSpeechService.speakInit(this.speech, this.speechData);
   }
     /*sendMessage(msg: string): any {
       console.log(msg);
@@ -173,7 +173,7 @@ export class ChatbotService {
       switch (rep.intents[0].name) {
         case 'temperature_set':
           console.log('Okay, I have to set the temperature');
-          this.serviceTtoS.speak(this.speech, 'Okay, I have to set the temperature');
+          this.textToSpeechService.speak(this.speech, 'Okay, I have to set the temperature');
 
           // console.log('okay I change the temperature for ' + rep.entities.wit$temperature:temperature[0].value + 'degrees');
           // turn the temperature to 70 degrees
@@ -181,7 +181,7 @@ export class ChatbotService {
 
         case 'temperature_get':
         console.log('Okay, I have to get the temperature');
-        this.serviceTtoS.speak(this.speech, 'Okay, I have to get the temperature');
+        this.textToSpeechService.speak(this.speech, 'Okay, I have to get the temperature');
 
         // console.log('okay I change the temperature for ' + rep.entities.wit$temperature:temperature[0].value + 'degrees');
         // turn the temperature to 70 degrees

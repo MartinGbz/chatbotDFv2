@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ChatbotService} from '../services/chatbot.service';
-import {SpeechRecognitionService} from '../services/speech.recognition.service';
+import {SpeechToText} from '../services/speech-to-text';
 
 import {TextToSpeechService} from '../services/text-to-speech.service';
 
@@ -14,19 +14,24 @@ export class ChatbotComponent implements OnInit {
   msg = null;
 
   // tslint:disable-next-line:max-line-length
-  constructor(public serv: ChatbotService, public serviceSpeech: SpeechRecognitionService, public textTotSpeechService: TextToSpeechService) {
-    serviceSpeech.init();
+  constructor(public serv: ChatbotService, public speechToTextService: SpeechToText, public textToSpeechService: TextToSpeechService) {
+    speechToTextService.init();
 
-    this.msg = serviceSpeech.text;
+    this.msg = speechToTextService.text;
   }
 
 
   ngOnInit(): void {
   }
 
-  send(): void{
-    console.log(this.msg);
-    this.serv.sendMessage(this.serviceSpeech.text);
+  send(value: string): void{
+/*    console.log('this.msg');
+    console.log(this.msg);*/
+    console.log('value:');
+    console.log(value);
+    // console.log(this.speechToTextService.text);
+    // this.serv.sendMessage(this.speechToTextService.text);
+    this.serv.sendMessage(value);
   }
 
   sendSpeech(): void {
@@ -34,11 +39,11 @@ export class ChatbotComponent implements OnInit {
   }
 
   startService(): void{
-    this.serviceSpeech.start();
+    this.speechToTextService.start();
   }
 
   stopService(): void{
-    this.serviceSpeech.stop();
+    this.speechToTextService.stop();
   }
 
 }
