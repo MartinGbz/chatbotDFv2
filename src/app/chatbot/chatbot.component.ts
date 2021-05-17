@@ -25,16 +25,11 @@ export class ChatbotComponent implements OnInit {
   }
 
   send(value: string): void{
-/*    console.log('this.msg');
-    console.log(this.msg);*/
-    console.log('value:');
-    console.log(value);
-    // console.log(this.speechToTextService.text);
-    // this.serv.sendMessage(this.speechToTextService.text);
     this.serv.sendMessage(value);
   }
 
   sendSpeech(): void {
+    console.log(this.msg);
     this.serv.sendSpeech(this.msg);
   }
 

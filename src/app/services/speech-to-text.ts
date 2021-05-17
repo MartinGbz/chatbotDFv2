@@ -40,7 +40,7 @@ export class SpeechToText {
   }
 
   stop(): void {
-    console.log('2: End speech recognition');
+    // console.log('2: End speech recognition');
   }
 
   wordConcat(): void {

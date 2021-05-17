@@ -19,17 +19,11 @@ export class TextToSpeechService {
         voice: 'Google UK English Male',
         splitSentences: true,
         listeners: {
-          onvoiceschanged: (voices) => {
-            // console.log('Event voiceschanged', voices);
-          }
         }
       }).then((data) => {
         // The "data" object contains the list of available voices and the voice synthesis params
         console.log('Speech is ready, voices are available', data);
         speechData = data;
-        data.voices.forEach(voice => {
-          // console.log(voice.name + ' ' + voice.lang);
-        });
       }).catch(e => {
         console.error('An error occured while initializing : ', e);
       });

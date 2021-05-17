@@ -39,58 +39,6 @@ export class ChatbotService {
     this.speech = new Speech(); // will throw an exception if not browser supported
     textToSpeechService.speakInit(this.speech, this.speechData);
   }
-    /*sendMessage(msg: string): any {
-      console.log(msg);
-      // const body: RequestChatbot = { {{text: msg}, languageCode: "en" }, {timeZone: ""}};
-      // const body = {} as RequestChatbot;
-      /!*    console.log(body);
-          body.queryInput.text.text = msg;
-          body.queryInput.languageCode = 'en';
-          body.queryParams.timeZone = 'Europe/Madrid';*!/
-
-      // tslint:disable-next-line:max-line-length
-      // const body = JSON.parse('{ "queryInput":{"text":{"text": \"' + msg + '\"}, "languageCode": "en" }, "queryParams":{"timeZone": "Europe/Madrid" }');
-
-      const headerDict = {
-        Authorization: 'Bearer ' + GlobalVariables.ACCESS_TOKEN_GOOGLE,
-        'Content-Type': 'application/json; charset=utf-8'
-      };
-
-      const requestOptions = {
-        headers: new HttpHeaders(headerDict),
-      };
-
-      const body = {
-        queryInput: {
-          text: {
-            text: msg
-          },
-          languageCode: 'en'
-        },
-        queryParams: {
-          timeZone: 'Europe/Madrid'
-        }
-      };
-
-      console.log(body);
-
-      return new Promise((resolve, reject) => {
-        this.http.post<RequestChatbot>('https://'
-          + GlobalVariables.REGION_ID + '-dialogflow.googleapis.com/v3/projects/'
-          + GlobalVariables.PROJECT_ID + '/locations/'
-          + GlobalVariables.REGION_ID + '/agents/'
-          + GlobalVariables.AGENT_ID + '/sessions/'
-          + GlobalVariables.SESSION_ID + ':detectIntent', body, requestOptions).subscribe(
-          (response) => {
-            resolve(response);
-            console.log(response);
-          },
-          (error) => {
-            reject(error);
-          }
-        );
-      });
-    }*/
 
   // wit.AI
   sendMessage(msg: string): any {
@@ -120,21 +68,11 @@ export class ChatbotService {
          console.log(error);
        }
      );
-
-/*    return new Promise((resolve, reject) => {
-      this.http.get('https://api.wit.ai/message?v=20210512&q=turn%20the%20temperature%20to%2070%20degrees', requestOptions).subscribe(
-        (response) => {
-          resolve(response);
-          console.log(response);
-        },
-        (error) => {
-          reject(error);
-        }
-      );
-    });*/
   }
 
   sendSpeech(audio: string): void {
+    console.log('audio');
+    console.log(audio);
     const headerDict = {
       Authorization: 'Bearer ' + GlobalVariables.ACCESS_TOKEN_WIT,
       'Content-type': 'audio/mpeg3',
@@ -148,10 +86,12 @@ export class ChatbotService {
       headers: new HttpHeaders(headerDict),
     };
 
-/*    const body = {
+    /*
+    const body = {
       'data-binary': audio
       // audio_file: audio
-    };*/
+    };
+    */
 
     // console.log(requestOptions);
 
