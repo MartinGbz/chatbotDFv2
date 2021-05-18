@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import {ChatbotService} from '../services/chatbot.service';
-import {SpeechToText} from '../services/speech-to-text';
+import {SpeechToTextService} from '../services/speech-to-text.service';
 
 import {TextToSpeechService} from '../services/text-to-speech.service';
+import {ConversationService} from '../services/conversation.service';
+import {UserModel} from '../models/user.model';
 
 @Component({
   selector: 'app-chatbot',
   templateUrl: './chatbot.component.html',
   styleUrls: ['./chatbot.component.css']
 })
+
+
 export class ChatbotComponent implements OnInit {
 
   msg = null;
 
   // tslint:disable-next-line:max-line-length
-  constructor(public serv: ChatbotService, public speechToTextService: SpeechToText, public textToSpeechService: TextToSpeechService) {
+  constructor(public serv: ChatbotService, public speechToTextService: SpeechToTextService, public textToSpeechService: TextToSpeechService, public convService: ConversationService) {
     speechToTextService.init();
 
     this.msg = speechToTextService.text;
@@ -22,6 +26,13 @@ export class ChatbotComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.speechToTextService.endSpeechEvent.subscribe(
+      (text) => {
+        console.log('text:');
+        console.log(text);
+        this.send(text);
+      }
+    );
   }
 
   send(value: string): void{
@@ -40,5 +51,4 @@ export class ChatbotComponent implements OnInit {
   stopService(): void{
     this.speechToTextService.stop();
   }
-
 }

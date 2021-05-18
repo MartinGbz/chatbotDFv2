@@ -6,6 +6,7 @@ import {Injectable} from '@angular/core';
 import {TextToSpeechService} from './text-to-speech.service';
 
 import Speech from 'speak-tts';
+import {ControllerService} from './controller.service';
 
 interface RequestChatbot {
   queryInput: {
@@ -28,6 +29,67 @@ interface RequestChatbot {
   };
 }*/
 
+/* interface responseWitPost {
+  'text': string;
+  'intents': [
+    {
+      'id': string,
+      'name': string,
+      'confidence': number,
+    }
+  ],
+  'entities': {
+    'metric:metric': [
+      {
+        'id': string,
+        'name': string,
+        'role': string,
+        'start': 9,
+        'end': 15,
+        'body': string,
+        'value': string,
+        'confidence': 0.9231,
+        'entities': []
+      }
+    ],
+    'wit$datetime:datetime': [
+      {
+        'id': string,
+        'name': string,
+        'role': string,
+        'start': 16,
+        'end': 42,
+        'body': string,
+        'confidence': 0.9541,
+        'entities': [],
+        'type': string,
+        'from': {
+          'grain': string,
+          'value': string
+        },
+        'to': {
+          'grain': string,
+          'value': string
+        },
+        'values': [
+          {
+            'type': string,
+            'from': {
+              'grain': string,
+              'value': string
+            },
+            'to': {
+              'grain': string,
+              'value': string
+            }
+          }
+        ]
+      ]
+    }
+  }
+};
+*/
+
 @Injectable({ providedIn: 'root' })
 
 export class ChatbotService {
@@ -35,7 +97,7 @@ export class ChatbotService {
   speech: any;
   speechData: any;
 
-  constructor(private http: HttpClient, private textToSpeechService: TextToSpeechService) {
+  constructor(private http: HttpClient, private textToSpeechService: TextToSpeechService, private controllerService: ControllerService) {
     this.speech = new Speech(); // will throw an exception if not browser supported
     textToSpeechService.speakInit(this.speech, this.speechData);
   }
@@ -61,7 +123,7 @@ export class ChatbotService {
       (reponse: any) => {
         console.log('reponse:');
         console.log(reponse);
-        this.redirectToFunction(reponse);
+        this.controllerService.controller(reponse);
        },
        (error) => {
          console.log('error:');
@@ -108,28 +170,37 @@ export class ChatbotService {
     );
   }
 
-  redirectToFunction(rep): void {
-    if (rep.intents.length !== 0) {
-      switch (rep.intents[0].name) {
-        case 'temperature_set':
-          console.log('Okay, I have to set the temperature');
-          this.textToSpeechService.speak(this.speech, 'Okay, I have to set the temperature');
-
-          // console.log('okay I change the temperature for ' + rep.entities.wit$temperature:temperature[0].value + 'degrees');
-          // turn the temperature to 70 degrees
-          break;
-
-        case 'temperature_get':
-        console.log('Okay, I have to get the temperature');
-        this.textToSpeechService.speak(this.speech, 'Okay, I have to get the temperature');
-
-        // console.log('okay I change the temperature for ' + rep.entities.wit$temperature:temperature[0].value + 'degrees');
-        // turn the temperature to 70 degrees
-        break;
-        default:
-          console.log('I didn\'t reconize your question');
-          break;
-      }
-    }
-  }
+  // controller(rep): void {
+  //   if (rep.intents.length !== 0) {
+  //     switch (rep.intents[0].name) {
+  //       case 'temperature_set':
+  //         console.log('Okay, I have to set the temperature');
+  //         // tslint:disable-next-line:max-line-length
+  //         this.textToSpeechService.speak(this.speech, 'Okay I change the temperature for' + rep.entities['wit$temperature:temperature'][0].value + 'degrees');
+  //         console.log(`okay I change the temperature for ${rep.entities['wit$temperature:temperature'][0].value} degrees`);
+  //
+  //         // console.log('okay I change the temperature for ' + rep.entities.wit$temperature:temperature[0].value + 'degrees');
+  //         // turn the temperature to 70 degrees
+  //         break;
+  //
+  //       case 'temperature_get':
+  //         console.log('Okay, I have to get the temperature');
+  //         this.textToSpeechService.speak(this.speech, 'Okay, I have to get the temperature');
+  //         // turn the temperature to 70 degrees
+  //         break;
+  //
+  //       case 'name_set':
+  //         console.log('Okay, I have to set the name');
+  //         // this.textToSpeechService.speak(this.speech, 'Okay, I have to set the name');
+  //         this.textToSpeechService.speak(this.speech, 'Hi' + rep.entities['wit$contact:contact'][0].value + '!');
+  //         // wit$age_of_person:age_of_person
+  //         // console.log(rep['entities']);
+  //         break;
+  //
+  //       default:
+  //         console.log('I didn\'t reconize your question');
+  //         break;
+  //     }
+  //   }
+  // }
 }

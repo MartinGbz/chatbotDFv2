@@ -9,3 +9,20 @@
 #usermsg-1{
   background-color: dodgerblue;
 }
+
+/*::ng-deep nb-layout-column {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
+/*:host {*/
+/*  display: flex;*/
+/*}*/
+
+/*::ng-deep nb-layout-column {*/
+/*  justify-content: center;*/
+/*  display: flex;*/
+/*}*/
+nb-chat {
+  width: 500px;
+  margin: 0.5rem 0 2rem 2rem;
+}

@@ -1,0 +1,20 @@
+<nb-chat title="Nebular Conversational UI"
+         size="small"
+         class="status-success size-small ng-star-inserted"
+         [title]="'Conversation'"
+         [status]="'success'"
+         size="small">
+  <nb-chat-message *ngFor="let msg of convService.messages"
+                   [type]="msg.type"
+                   [message]="msg.text"
+                   [reply]="msg.reply"
+                   [sender]="msg.user.name"
+                   [date]="msg.date"
+                   [files]="msg.files"
+                   [quote]="msg.quote"
+                   [latitude]="msg.latitude"
+                   [longitude]="msg.longitude"
+                   [avatar]="msg.user.avatar">
+  </nb-chat-message>
+  <nb-chat-form (send)="sendMsg($event)" [dropFiles]="true"></nb-chat-form>
+</nb-chat>
