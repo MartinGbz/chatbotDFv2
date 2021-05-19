@@ -42,8 +42,7 @@
     "@progress/kendo-angular-l10n": "^3.0.0",
     "@progress/kendo-angular-popup": "^4.0.0",
     "@progress/kendo-licensing": "^1.0.2",
-    "@angular/localize": "~11.2.13",
-    "@progress/kendo-theme-default": "latest"
+    "@angular/localize": "~11.2.13"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.12",
