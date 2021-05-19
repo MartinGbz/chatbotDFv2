@@ -32,6 +32,7 @@
     "@progress/kendo-angular-l10n": "^3.0.0",
     "@progress/kendo-angular-popup": "^4.0.0",
     "@progress/kendo-licensing": "^1.0.2",
+    "@progress/kendo-theme-default": "^4.38.1",
     "@types/gapi": "^0.0.39",
     "@types/gapi.auth2": "^0.0.54",
     "@types/gapi.client": "^1.0.4",
