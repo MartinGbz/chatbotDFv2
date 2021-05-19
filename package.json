@@ -24,6 +24,7 @@
     "@nebular/eva-icons": "^7.0.0",
     "@nebular/security": "^7.0.0",
     "@nebular/theme": "^7.0.0",
+    "@progress/kendo-angular-conversational-ui": "^3.0.1",
     "@types/gapi": "^0.0.39",
     "@types/gapi.auth2": "^0.0.54",
     "@types/gapi.client": "^1.0.4",
@@ -34,7 +35,15 @@
     "tslib": "^2.2.0",
     "utf8-encoding": "^0.1.2",
     "witai-speech": "^0.2.0",
-    "zone.js": "~0.11.3"
+    "zone.js": "~0.11.3",
+    "@progress/kendo-angular-buttons": "^6.0.0",
+    "@progress/kendo-angular-common": "^2.0.0",
+    "@progress/kendo-angular-intl": "^3.0.0",
+    "@progress/kendo-angular-l10n": "^3.0.0",
+    "@progress/kendo-angular-popup": "^4.0.0",
+    "@progress/kendo-licensing": "^1.0.2",
+    "@angular/localize": "~11.2.13",
+    "@progress/kendo-theme-default": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.12",

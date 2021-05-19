@@ -15,8 +15,10 @@ export class ControllerService {
   bot: UserModel;
 
   constructor(private textToSpeechService: TextToSpeechService, private convService: ConversationService) {
+    // Voice
     this.speech = new Speech(); // will throw an exception if not browser supported
     textToSpeechService.speakInit(this.speech, this.speechData);
+
     this.bot = new UserModel('Bot', 'https://i.gifer.com/no.gif');
   }
 
@@ -29,9 +31,6 @@ export class ControllerService {
           this.textToSpeechService.speak(this.speech, 'Okay I change the temperature for' + rep.entities['wit$temperature:temperature'][0].value + 'degrees');
           console.log(`Okay I change the temperature for ${rep.entities['wit$temperature:temperature'][0].value} degrees`);
           this.sendReplyBot(rep, `Okay I change the temperature for ${rep.entities['wit$temperature:temperature'][0].value} degrees`);
-
-          // console.log('okay I change the temperature for ' + rep.entities.wit$temperature:temperature[0].value + 'degrees');
-          // turn the temperature to 70 degrees
           break;
 
         case 'temperature_get':
@@ -43,17 +42,20 @@ export class ControllerService {
 
         case 'name_set':
           console.log('Okay, I have to set the name');
-          // this.textToSpeechService.speak(this.speech, 'Okay, I have to set the name');
           this.textToSpeechService.speak(this.speech, 'Hi' + rep.entities['wit$contact:contact'][0].value + '!');
-          this.sendReplyBot(rep, 'Hi' + rep.entities['wit$contact:contact'][0].value + '!');
-          // wit$age_of_person:age_of_person
-          // console.log(rep['entities']);
+          this.sendReplyBot(rep, 'Hi ' + rep.entities['wit$contact:contact'][0].value + '!');
           break;
 
         default:
-          console.log('I didn\'t reconize your question');
+          console.log('Sorry, I didn\'t understand your question...');
+          this.textToSpeechService.speak(this.speech, 'Sorry, I didn\'t understand your question...');
+          this.sendReplyBot(rep, 'Sorry, I didn\'t understand your question...');
           break;
       }
+    } else {
+      console.log('Sorry, I didn\'t understand your question...');
+      this.textToSpeechService.speak(this.speech, 'Sorry, I didn\'t understand your question...');
+      this.sendReplyBot(rep, 'Sorry, I didn\'t understand your question...');
     }
   }
 

@@ -13,12 +13,14 @@ import {
   NbChatModule,
   NbSidebarModule,
   NbButtonModule,
-  NbIconModule, NbMenuModule, NbSidebarService
+  NbIconModule, NbMenuModule, NbSidebarService, NbButtonGroupModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { AppRoutingModule } from './app-routing.module';
 import { ConversationComponent } from './conversation/conversation.component';
 import {RouterModule} from '@angular/router';
+import { ChatModule } from '@progress/kendo-angular-conversational-ui';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import {RouterModule} from '@angular/router';
     RouterModule, // RouterModule.forRoot(routes, { useHash: true }), if this is your app.module
     NbSidebarModule, // NbSidebarModule.forRoot(), //if this is your app.module
     NbButtonModule,
+    NbButtonGroupModule,
+    ChatModule,
   ],
   providers: [NbSidebarService],
   bootstrap: [AppComponent]

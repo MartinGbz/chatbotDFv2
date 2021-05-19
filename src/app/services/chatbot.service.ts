@@ -169,38 +169,4 @@ export class ChatbotService {
       }
     );
   }
-
-  // controller(rep): void {
-  //   if (rep.intents.length !== 0) {
-  //     switch (rep.intents[0].name) {
-  //       case 'temperature_set':
-  //         console.log('Okay, I have to set the temperature');
-  //         // tslint:disable-next-line:max-line-length
-  //         this.textToSpeechService.speak(this.speech, 'Okay I change the temperature for' + rep.entities['wit$temperature:temperature'][0].value + 'degrees');
-  //         console.log(`okay I change the temperature for ${rep.entities['wit$temperature:temperature'][0].value} degrees`);
-  //
-  //         // console.log('okay I change the temperature for ' + rep.entities.wit$temperature:temperature[0].value + 'degrees');
-  //         // turn the temperature to 70 degrees
-  //         break;
-  //
-  //       case 'temperature_get':
-  //         console.log('Okay, I have to get the temperature');
-  //         this.textToSpeechService.speak(this.speech, 'Okay, I have to get the temperature');
-  //         // turn the temperature to 70 degrees
-  //         break;
-  //
-  //       case 'name_set':
-  //         console.log('Okay, I have to set the name');
-  //         // this.textToSpeechService.speak(this.speech, 'Okay, I have to set the name');
-  //         this.textToSpeechService.speak(this.speech, 'Hi' + rep.entities['wit$contact:contact'][0].value + '!');
-  //         // wit$age_of_person:age_of_person
-  //         // console.log(rep['entities']);
-  //         break;
-  //
-  //       default:
-  //         console.log('I didn\'t reconize your question');
-  //         break;
-  //     }
-  //   }
-  // }
 }

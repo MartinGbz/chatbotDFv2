@@ -3,6 +3,7 @@ import {ChatbotComponent} from '../chatbot/chatbot.component';
 import {ConversationService} from '../services/conversation.service';
 import {UserModel} from '../models/user.model';
 import {ChatbotService} from '../services/chatbot.service';
+import {SpeechToTextService} from '../services/speech-to-text.service';
 
 @Component({
   selector: 'app-conversation',
@@ -11,15 +12,46 @@ import {ChatbotService} from '../services/chatbot.service';
 })
 export class ConversationComponent implements OnInit {
 
-  constructor(public convService: ConversationService, private chatbotService: ChatbotService) { }
+  curMsg: string;
 
-  ngOnInit(): void {
+  // tslint:disable-next-line:max-line-length
+  constructor(public convService: ConversationService, private chatbotService: ChatbotService, public speechToTextService: SpeechToTextService) {
+    speechToTextService.init();
+    this.curMsg = speechToTextService.text;
+
+    // speechToTextService.endSpeechEvent = this.sendMsgTalk;
   }
 
+  ngOnInit(): void {
+    this.speechToTextService.endSpeechEvent.subscribe(
+      (text) => {
+        const obj = {message: text, files: []};
+        console.log(obj);
+        this.sendMsg(obj);
+      }
+    );
+  }
+
+  // sendMsg($event: { message: string; files: File[] }): void {
+  //   console.log($event.message);
+  //   this.curMsg = $event.message;
+  //   this.convService.addMsg('',
+  //     this.curMsg,
+  //     true,
+  //     new UserModel('Me', ''),
+  //     Date.now().toString(),
+  //     '',
+  //     '',
+  //     '',
+  //     '');
+  //   this.chatbotService.sendMessage(this.curMsg);
+  //   document.getElementById('btnRec').classList.remove('disabled');
+  // }
   sendMsg($event: { message: string; files: File[] }): void {
     console.log($event.message);
+    this.curMsg = $event.message;
     this.convService.addMsg('',
-      $event.message,
+      this.curMsg,
       true,
       new UserModel('Me', ''),
       Date.now().toString(),
@@ -27,10 +59,11 @@ export class ConversationComponent implements OnInit {
       '',
       '',
       '');
-    this.chatbotService.sendMessage($event.message);
+    this.chatbotService.sendMessage(this.curMsg);
+    document.getElementById('btnRec').classList.remove('disabled');
   }
 
-  clearConv(): void {
+  clearConv($event: any): void {
     this.convService.clearConv();
     console.log('add');
     this.convService.addMsg(
@@ -45,23 +78,9 @@ export class ConversationComponent implements OnInit {
       '');
 
   }
-}
 
-export class ChatColorsComponent {
-  chats: any[] = [
-    {
-      status: 'success',
-      title: 'Nebular Conversational UI Success',
-      messages: [
-        {
-          text: 'Success!',
-          date: new Date(),
-          reply: false,
-          user: {
-            name: 'Bot',
-            avatar: 'https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/robot-face.png',
-          },
-        },
-      ],
-    }];
+  startService(): void{
+    document.getElementById('btnRec').classList.add('disabled');
+    this.speechToTextService.start();
+  }
 }

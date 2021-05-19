@@ -9,6 +9,7 @@ declare var webkitSpeechRecognition: any;
 export class SpeechToTextService {
 
   @Output() endSpeechEvent: EventEmitter<any> = new EventEmitter();
+  // @Output() endSpeechEvent: (msg: string) => void = new EventEmitter();
 
   recognition =  new webkitSpeechRecognition();
   public text = '';
@@ -46,6 +47,7 @@ export class SpeechToTextService {
       // meanwhile, in order to fiw temporarily, I created a i variable
       if (this.i === 0) {
         console.log('Event');
+        console.log(this.text);
         this.endSpeechEvent.emit(this.text);
       }
       this.i++;
