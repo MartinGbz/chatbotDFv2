@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {ConversationModel} from '../models/conversation.model';
 import {UserModel} from '../models/user.model';
 import {MessageModel} from '../models/message.model';
 
@@ -20,16 +19,16 @@ export class ConversationService {
       'Hi, what is your name?',
       false,
       new UserModel('bot', 'https://i.gifer.com/no.gif'),
+      Date.now(),
       '',
       '',
-      '',
-      '',
-      '');
+      null,
+      null);
   }
 
 
   // tslint:disable-next-line:max-line-length
-  addMsg(type: string, text: string, reply: boolean, user: UserModel, date: string, files: string, quote: string, latitude: string, longitude: string): void {
+  addMsg(type: string, text: string, reply: boolean, user: UserModel, date: number, files: string, quote: string, latitude: number, longitude: number): void {
     this.messages[this.counter] = new MessageModel(type, text, reply, user, date, files, quote, latitude, longitude);
     this.counter++;
     console.log('added');

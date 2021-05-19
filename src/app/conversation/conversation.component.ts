@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ChatbotComponent} from '../chatbot/chatbot.component';
 import {ConversationService} from '../services/conversation.service';
 import {UserModel} from '../models/user.model';
 import {ChatbotService} from '../services/chatbot.service';
@@ -18,8 +17,6 @@ export class ConversationComponent implements OnInit {
   constructor(public convService: ConversationService, private chatbotService: ChatbotService, public speechToTextService: SpeechToTextService) {
     speechToTextService.init();
     this.curMsg = speechToTextService.text;
-
-    // speechToTextService.endSpeechEvent = this.sendMsgTalk;
   }
 
   ngOnInit(): void {
@@ -32,21 +29,7 @@ export class ConversationComponent implements OnInit {
     );
   }
 
-  // sendMsg($event: { message: string; files: File[] }): void {
-  //   console.log($event.message);
-  //   this.curMsg = $event.message;
-  //   this.convService.addMsg('',
-  //     this.curMsg,
-  //     true,
-  //     new UserModel('Me', ''),
-  //     Date.now().toString(),
-  //     '',
-  //     '',
-  //     '',
-  //     '');
-  //   this.chatbotService.sendMessage(this.curMsg);
-  //   document.getElementById('btnRec').classList.remove('disabled');
-  // }
+
   sendMsg($event: { message: string; files: File[] }): void {
     console.log($event.message);
     this.curMsg = $event.message;
@@ -54,11 +37,11 @@ export class ConversationComponent implements OnInit {
       this.curMsg,
       true,
       new UserModel('Me', ''),
-      Date.now().toString(),
+      Date.now(),
       '',
       '',
-      '',
-      '');
+      null,
+      null);
     this.chatbotService.sendMessage(this.curMsg);
     document.getElementById('btnRec').classList.remove('disabled');
   }
@@ -71,11 +54,11 @@ export class ConversationComponent implements OnInit {
       'Hi, what is your name?',
       false,
       new UserModel('bot', 'https://i.gifer.com/no.gif'),
+      Date.now(),
       '',
       '',
-      '',
-      '',
-      '');
+      null,
+      null);
 
   }
 

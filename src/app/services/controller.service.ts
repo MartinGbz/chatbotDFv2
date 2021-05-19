@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {TextToSpeechService} from './text-to-speech.service';
 import {ConversationService} from './conversation.service';
 import {UserModel} from '../models/user.model';
@@ -31,12 +30,14 @@ export class ControllerService {
           this.textToSpeechService.speak(this.speech, 'Okay I change the temperature for' + rep.entities['wit$temperature:temperature'][0].value + 'degrees');
           console.log(`Okay I change the temperature for ${rep.entities['wit$temperature:temperature'][0].value} degrees`);
           this.sendReplyBot(rep, `Okay I change the temperature for ${rep.entities['wit$temperature:temperature'][0].value} degrees`);
+          console.log('temperature_set');
           break;
 
         case 'temperature_get':
           console.log('Okay, I have to get the temperature');
           this.textToSpeechService.speak(this.speech, 'Okay, I have to get the temperature');
           this.sendReplyBot(rep, `Okay, I have to get the temperature`);
+          console.log('temperature_get');
           // turn the temperature to 70 degrees
           break;
 
@@ -61,6 +62,6 @@ export class ControllerService {
 
   sendReplyBot(rep, text): void{
     this.convService.addMsg('',
-      text, false, this.bot, Date.now().toString(), '', '', '', '');
+      text, false, this.bot, Date.now(), '', '', null, null);
   }
 }

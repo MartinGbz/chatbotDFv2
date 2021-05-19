@@ -5,14 +5,14 @@ export class MessageModel {
   text: string;
   reply: boolean;
   user: UserModel;
-  date: string;
+  date: number;
   files: string;
   quote: string;
-  latitude: string;
-  longitude: string;
+  latitude: number;
+  longitude: number;
 
   // tslint:disable-next-line:max-line-length
-  constructor(type: string, text: string, reply: boolean, user: UserModel, date: string, files: string, quote: string, latitude: string, longitude: string) {
+  constructor(type: string, text: string, reply: boolean, user: UserModel, date: number, files: string, quote: string, latitude: number, longitude: number) {
     this.type = type;
     this.text = text;
     this.reply = reply;
